@@ -5,6 +5,7 @@
 import { app, BrowserWindow } from "electron/main";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { ipcMain } from "electron";
 
 // Create __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +30,7 @@ const createWindow = () => {
 // The app.whenReady() method ensures that the createWindow() function is called only after Electron has finished initializing.
 // This prevents any issues that might arise from trying to create a window before the app is fully
 app.whenReady().then(() => {
+  ipcMain.handle("ping", () => "pong");
   createWindow();
 
   // The app.on("activate") event listener is specific to macOS (darwin).

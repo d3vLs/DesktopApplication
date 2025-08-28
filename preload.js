@@ -9,6 +9,8 @@ contextBridge.exposeInMainWorld("versions", {
   // we can also expose variables, not just functions
   platform: () => process.platform,
 
+  ping: () => ipcRenderer.invoke("ping"),
+
   // we can also expose entire objects, not just functions
   //   os: os.type(),
 });
