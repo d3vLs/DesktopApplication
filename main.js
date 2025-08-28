@@ -3,6 +3,12 @@
 // app, which controls your application's event lifecycle.
 // BrowserWindow, which creates and manages app windows.
 import { app, BrowserWindow } from "electron/main";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+// Create __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // The createWindow() function loads your web page into a new BrowserWindow instance
 // and sets the window's dimensions to 800x600 pixels.
@@ -11,6 +17,10 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      contextIsolation: true, // (default is true, but you can add this explicitly)
+      preload: join(__dirname, "preload.js"),
+    },
   });
 
   win.loadFile("index.html");
