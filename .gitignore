@@ -22,6 +22,9 @@ lib-cov
 coverage
 *.lcov
 
+# out folder for build artifacts
+out/
+
 # nyc test coverage
 .nyc_output
 
